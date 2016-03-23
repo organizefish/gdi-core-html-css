@@ -357,18 +357,38 @@ p {
         </section>
         
         <!-- Cascading-->
-        <section style="font-size: 90%;">
-          <h3>Cascading</h3>
-          <p>Styles "cascade" down until changed</p>
-		  <div class="right" style="width: 30%">
-<div style="color:blue; color:darkorange; font-family:'Trebuchet MS';">
-  <p>Paragraph</p>
-  <p style="color:green;">Paragraph</p>
-  <p style="color:red;">Paragraph</p>
-  <p style="color:red; font-family: Georgia;">Paragraph</p>
-</div>
-		  </div>
-		  <div class="left" style="width: 70%">
+        <section>
+          
+		  <section style="font-size: 75%;">
+		    <h3>Cascading</h3>
+            <p>Styles "cascade" down until changed</p>
+		    <div class="right" style="width: 30%">
+              <style scoped>
+                p {
+                  color: blue;
+                  color: darkorange;
+                  font-family: 'Trebuchet MS';
+                }
+                .red {
+                  color: red;
+                }
+                .green {
+                  color: green;
+                }
+                p {
+                  font-family: 'Comic Sans MS';
+				  font-weight: bold;
+                }
+                #special {
+                  font-family: Georgia;
+                }
+              </style>
+              <p>Paragraph</p>
+              <p class="green">Paragraph</p>
+              <p class="red">Paragraph</p>
+              <p class="red" id="special">Paragraph</p>
+		    </div>
+		    <div class="left" style="width: 70%">
 <pre><code class = "html">
 p {
   color: blue;
@@ -381,19 +401,24 @@ p {
 .green {
   color: green;
 }
+p {
+  font-family: 'Comic Sans MS';
+  font-weight: bold;
+}
 #special {
   font-family: Georgia;
 }
 </code></pre>
-          </div>
-		  <div class="left" style="width: 70%">
+            </div>
+		    <div class="left" style="width: 70%">
 <pre><code class = "html">
   &lt;p>Paragraph&lt;/p>
   &lt;p class="green">Paragraph&lt;/p>
   &lt;p class="red">Paragraph&lt;/p>
   &lt;p class="red" id="special">Paragraph&lt;/p>
 </code></pre>
-          </div>
+            </div>
+          </section>
 
         </section>
       
