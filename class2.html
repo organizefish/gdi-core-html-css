@@ -419,6 +419,132 @@ p {
 </code></pre>
             </div>
           </section>
+      
+          <section>
+		    <h3>Cascading Errors</h3>
+            <p>Redundant properties use last property</p>
+			<p>Previously declared properties are ignored</p>
+		    <div>
+<pre><code class = "html">
+p {
+  <span class="fragment fade-out">color: blue;</span>
+  color: darkorange;
+}
+</code></pre>
+            </div>
+		    <div>
+<pre><code class = "html">
+  &lt;p>Paragraph&lt;/p>
+</code></pre>
+            </div>
+		    <div>
+              <style scoped>
+                p {
+                  color: blue;
+                  color: darkorange;
+                }
+              </style>
+              <p>Paragraph</p>
+		    </div>
+          </section>
+		  
+		  <section>
+		    <h3>Cascading Errors</h3>
+            <p>Redundant rules use last of redundant properties</p>
+			<p>Previously declared properties are ignored</p>
+		    <div>
+<pre><code class = "html">
+p {
+  color: darkorange;
+  <span class="fragment fade-out" data-fragment-index="1">font-family: 'Trebuchet MS';</span>
+<span class="fragment fade-out" data-fragment-index="2">}
+p {</span>
+  font-family: 'Comic Sans MS';
+  font-weight: bold;
+}
+</code></pre>
+            </div>
+		    <div>
+<pre><code class = "html">
+  &lt;p>Paragraph&lt;/p>
+</code></pre>
+            </div>
+		    <div>
+              <style scoped>
+                p {
+                  color: darkorange;
+                  font-family: 'Trebuchet MS';
+                }
+                p {
+                  font-family: 'Comic Sans MS';
+				  font-weight: bold;
+                }
+              </style>
+              <p>Paragraph</p>
+		    </div>
+		  </section>
+		  
+		  <section style="font-size: 75%;">
+		    <h3>Result of Cascade</h3>
+            <p>Styles "cascade" down until changed</p>
+		    <div class="right" style="width: 30%">
+              <style scoped>
+                p {
+                  color: blue;
+                  color: darkorange;
+                  font-family: 'Trebuchet MS';
+                }
+                .red {
+                  color: red;
+                }
+                .green {
+                  color: green;
+                }
+                p {
+                  font-family: 'Comic Sans MS';
+				  font-weight: bold;
+                }
+                #special {
+                  font-family: Georgia;
+                }
+              </style>
+              <p>Paragraph</p>
+              <p class="green">Paragraph</p>
+              <p class="red">Paragraph</p>
+              <p class="red" id="special">Paragraph</p>
+		    </div>
+		    <div class="left" style="width: 70%">
+<pre><code class = "html">
+p {
+  <s>color: blue;</s>
+  color: darkorange;
+  font-family: 'Trebuchet MS';
+  font-weight: bold;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+<s>p {
+  font-family: 'Comic Sans MS';
+  font-weight: bold;
+}</s>
+#special {
+  font-family: Georgia;
+}
+</code></pre>
+            </div>
+		    <div class="left" style="width: 70%">
+<pre><code class = "html">
+  &lt;p>Paragraph&lt;/p>
+  &lt;p class="green">Paragraph&lt;/p>
+  &lt;p class="red">Paragraph&lt;/p>
+  &lt;p class="red" id="special">Paragraph&lt;/p>
+</code></pre>
+            </div>
+          </section>
 
         </section>
       
